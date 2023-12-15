@@ -1,0 +1,118 @@
+<div class="ml-5 mt-5">
+    <h1>Edit Customer</h1>
+  </div>
+  <div class="ml-5 mr-5">
+    <form [formGroup]="CustomerForm" (submit)="save()">
+      <mat-accordion class="headers-align" multi>
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+              Type your personal info
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <!-- CustomerId -->
+          <mat-form-field>
+            <mat-label>CustomerId</mat-label>
+            <input matInput formControlName="CustomerId" required>
+            <mat-error *ngIf="CustomerForm.controls.CustomerId.touched && CustomerForm.controls.CustomerId.invalid">
+              <span *ngIf="CustomerForm.controls.CustomerId.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <!-- Firstname -->
+          <mat-form-field>
+            <mat-label>Firstname</mat-label>
+            <input matInput formControlName="Firstname" required>
+            <mat-error *ngIf="CustomerForm.controls.Firstname.touched && CustomerForm.controls.Firstname.invalid">
+              <span *ngIf="CustomerForm.controls.Firstname.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <!-- Lastname -->
+          <mat-form-field>
+            <mat-label>Lastname</mat-label>
+            <input matInput formControlName="Lastname" required>
+            <mat-error *ngIf="CustomerForm.controls.Lastname.touched && CustomerForm.controls.Lastname.invalid">
+              <span *ngIf="CustomerForm.controls.Lastname.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <!-- email -->
+          <mat-form-field>
+            <mat-label>email</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error *ngIf="CustomerForm.controls.email.touched && CustomerForm.controls.email.invalid">
+              <span *ngIf="CustomerForm.controls.email.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <!-- Phone_Number -->
+          <mat-form-field>
+            <mat-label>Phone_Number</mat-label>
+            <!-- <span matPrefix>+1 &nbsp;</span> -->
+            <input type="tel" matInput placeholder="55555-51234" formControlName="Phone_Number" required>
+            <mat-error *ngIf="CustomerForm.controls.Phone_Number.touched && CustomerForm.controls.Phone_Number.invalid">
+              <span *ngIf="CustomerForm.controls.Phone_Number.errors.required">This field is mandatory.</span>
+              <span *ngIf="CustomerForm.controls.Phone_Number.errors.maxlength">10 digit phone number required.</span>
+            </mat-error>
+          </mat-form-field>
+          <!-- Gender -->
+          <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <input type="text" placeholder="Select Gender" aria-label="Gender" matInput [formControl]="$any(CustomerForm.controls.Gender)"
+              [matAutocomplete]="auto" formControlName="Gender">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let Genders of GenderOptions" [value]="Genders">
+                {{Genders}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Additional Info
+            </mat-panel-title>
+            <mat-panel-description>
+              Type the additional details
+              <mat-icon>map</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <!-- Country_Code -->
+          <mat-form-field>
+            <mat-label>Country_Code</mat-label>
+            <input matInput type="text" placeholder="Select Country" aria-label="Country_Code" matInput
+              [formControl]="$any(CustomerForm.controls.Country_Code)" [matAutocomplete]="auto1" formControlName="Country_Code">
+            <mat-autocomplete #auto1="matAutocomplete">
+              <mat-option *ngFor="let CountryName of CountryOptions" [value]="CountryName">
+                {{CountryName}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <!-- Balance -->
+          <mat-form-field>
+            <mat-label>Balance</mat-label>
+            <input matInput type="number" formControlName="Balance" required>
+            <mat-error *ngIf="CustomerForm.controls.Balance.touched && CustomerForm.controls.Balance.invalid">
+              <span *ngIf="CustomerForm.controls.Balance.errors.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <!-- Currency -->
+          <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <input matInput formControlName="Currency">
+          </mat-form-field>
+          <mat-action-row>
+            <button mat-button color="warn" (click)="prevStep()">Previous</button>
+            <button mat-button color="primary" (click)="nextStep()">Next</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <br>
+      <!-- save button -->
+      <button mat-button style="background: greenyellow;" color="primary" type="submit">Save</button>
+    </form>
+  </div>

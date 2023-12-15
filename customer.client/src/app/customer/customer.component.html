@@ -1,0 +1,72 @@
+<div class="ml-5 mt-5">
+    <h1>Customers</h1>
+  </div>
+  <div class="mat-elevation-z8  ml-5 mr-5">
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.position}} </td>
+      </ng-container>
+      <!-- CustomerId Column -->
+      <ng-container matColumnDef="CustomerId">
+        <th mat-header-cell *matHeaderCellDef> CustomerId </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.CustomerId}} </td>
+      </ng-container>
+      <!-- Firstname Column -->
+      <ng-container matColumnDef="Firstname">
+        <th mat-header-cell *matHeaderCellDef> Firstname </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.Firstname}} </td>
+      </ng-container>
+      <!-- Lastname Column -->
+      <ng-container matColumnDef="Lastname">
+        <th mat-header-cell *matHeaderCellDef> Lastname </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.Lastname}} </td>
+      </ng-container>
+      <!-- email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> email </th>
+        <td mat-cell *matCellDef="let ele"> <a href="">{{ele.email}}</a> </td>
+      </ng-container>
+      <!-- Phone_Number Column -->
+      <ng-container matColumnDef="Phone_Number">
+        <th mat-header-cell *matHeaderCellDef> Phone_Number </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.Phone_Number}} </td>
+      </ng-container>
+      <!-- Country_Code Column -->
+      <ng-container matColumnDef="Country_Code">
+        <th mat-header-cell *matHeaderCellDef> Country_Code </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.Country_Code}} </td>
+      </ng-container>
+      <!-- Gender Column -->
+      <ng-container matColumnDef="Gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.Gender}} </td>
+      </ng-container>
+      <!-- Balance Column -->
+      <ng-container matColumnDef="Balance">
+        <th mat-header-cell *matHeaderCellDef> Balance </th>
+        <td mat-cell *matCellDef="let ele"> {{ele.Balance | currency:ele.currency}} </td>
+      </ng-container>
+      <!-- Edit Column -->
+      <ng-container matColumnDef="Edit">
+        <th mat-header-cell *matHeaderCellDef> Edit </th>
+        <td mat-cell *matCellDef="let ele"><button mat-raised-button color="primary" (click)="Edit(ele.CustomerId)"><mat-icon matSuffix>edit</mat-icon></button></td>
+      </ng-container>
+      <!-- Delete Column -->
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let ele"><button mat-raised-button color="primary" (click)="Delete(ele.CustomerId)"><mat-icon matSuffix>delete</mat-icon></button></td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  <br>
+  <!-- save button -->
+  <div class="button-row">
+    <button mat-raised-button color="primary" (click)="Add()">New Customer</button>
+  </div>
